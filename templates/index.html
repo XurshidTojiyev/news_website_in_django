@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+
+        .fs-10 {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .vh-50 {
+            height: 30vh;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .news-card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">News Dashboard</a>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <!-- Sidebar content goes here -->
+                <h5>Categories</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Barchasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?tk_c_1={{ tk_c_1 }}">Jahon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?tk_c_1={{ tk_c_2 }}">O'zbekiston</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sport</a>
+                    </li>
+                    <!-- Add more categories as needed -->
+                </ul>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <!-- Main content goes here -->
+                <h2>Latest News</h2>
+                <div class="row">
+                    <!-- News cards go here -->
+                    {% for new in news %}
+                    <div class="col-md-4">
+                        <div class="card news-card">
+                            <img src="{{ new.news_img }}" class="vh-50 card-img-top w-100" alt="News Image">
+                            <div class="card-body">
+                                <h5 class="card-title fs-10">{{ new.news_title }}</h5>
+                                <p class="alert-primary p-1 border text-primary mt-3">{{new.news_tag}}</p>
+                                <a href="news/?new={{new.news_token}}" class="btn btn-primary p-2">Batafsil</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Add more news cards as needed -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
